@@ -404,7 +404,7 @@ public class BasicContentBand extends ViewGroup {
 		if(dspRightScreenEdge >= 0) dspRightScreenEdge++; //to avoid problem with rounding of values
 		
 		int dspLeftScreenEdge = pxToDsp(leftScreenEdge);
-		if(dspLeftScreenEdge < 0) dspLeftScreenEdge--; //when values are <0 they get floored to value which is larger by value
+		if(dspLeftScreenEdge <= 0) dspLeftScreenEdge--; //when values are <0 they get floored to value which is larger
 		
 		mTempViewArray.clear();
 		View v;

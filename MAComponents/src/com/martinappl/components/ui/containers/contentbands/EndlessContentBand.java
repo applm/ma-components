@@ -36,7 +36,7 @@ public class EndlessContentBand extends BasicContentBand {
 		final int dspNextViewsRight = mCurrentlyLayoutedViewsLeftEdgeDsp;
 		
 		int dspLeftScreenEdge = pxToDsp(leftScreenEdge);
-		if(dspLeftScreenEdge < 0) dspLeftScreenEdge--; //when values are <0 they get floored to value which is larger by value
+		if(dspLeftScreenEdge <= 0) dspLeftScreenEdge--; //when values are <0 they get floored to value which is larger
 		
 		int end = mAdapter.getEnd();
 		
