@@ -31,8 +31,9 @@ import com.martinappl.components.general.Validate;
  * Horizontally scrollable container with boundaries on the ends, which places Views on coordinates specified 
  * by tile objects. Data binding is specified by adapter interface. Use abstract adapter which has already implemented
  * algorithms for searching views in requested ranges. You only need to implement getViewForTile method where you map
- * Tile objects from dataset to corresponding View objects, which get displayed. Use getLayoutParamForTile to automatically
- * generate LayoutParams object from Tile data. Position on screen is described by LayoutParams object.
+ * Tile objects from dataset to corresponding View objects, which get displayed. Position on screen is described by LayoutParams object.
+ * Method getLayoutParamsForTile helps generate layout params from data objects. If you don't set Layout params in getViewForTile, this
+ * methods is called automatically afterwards.
  * 
  * DSP = device specific pixel
  */ 
@@ -212,9 +213,12 @@ public class BasicContentBand extends ViewGroup {
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		final int c = getChildCount();
+		int c = getChildCount();
 		
-		if(c == 0) fillEmptyContainer();
+		if(c == 0) {
+			fillEmptyContainer();
+			c = getChildCount();
+		}
 		
 		for(int i=0; i<c; i++){
 			layoutTileView(getChildAt(i));
@@ -946,6 +950,10 @@ public class BasicContentBand extends ViewGroup {
 			else return 0;
 		}
 		
+		private void checkAndFixLayoutParams(View v, Tile t){
+			if(!(v.getLayoutParams() instanceof LayoutParams)) v.setLayoutParams(getLayoutParamsForTile(t));
+		}
+		
 		@Override
 		public View[] getViewsByLeftSideRange(int from, int to) {
 			if(from == to) return new View[0];
@@ -953,7 +961,9 @@ public class BasicContentBand extends ViewGroup {
 			
 			final View[] arr = new View[list.size()];
 			for(int i=0; i < arr.length; i++){
-				arr[i] = getViewForTile(list.get(i), mViewCache.getCachedView());
+				Tile t = list.get(i);
+				arr[i] = getViewForTile(t, mViewCache.getCachedView());
+				checkAndFixLayoutParams(arr[i], t);
 			}
 			
 			return arr;
@@ -966,7 +976,9 @@ public class BasicContentBand extends ViewGroup {
 			
 			final View[] arr = new View[list.size()];
 			for(int i=0; i < arr.length; i++){
-				arr[i] = getViewForTile(list.get(i), mViewCache.getCachedView());
+				Tile t = list.get(i);
+				arr[i] = getViewForTile(t, mViewCache.getCachedView());
+				checkAndFixLayoutParams(arr[i], t);
 			}
 			
 			return arr;
@@ -980,7 +992,9 @@ public class BasicContentBand extends ViewGroup {
 			
 			final View[] arr = new View[union.size()];
 			for(int i=0; i < arr.length; i++){
-				arr[i] = getViewForTile(union.get(i),mViewCache.getCachedView());
+				Tile t = union.get(i);
+				arr[i] = getViewForTile(t, mViewCache.getCachedView());
+				checkAndFixLayoutParams(arr[i], t);
 			}
 			
 			return arr;
