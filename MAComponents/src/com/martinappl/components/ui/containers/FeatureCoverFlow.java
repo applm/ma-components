@@ -731,8 +731,8 @@ public class FeatureCoverFlow extends EndlessLoopAdapterContainer implements Vie
 		final Bitmap rfCache = ((CoverFrame) child).mReflectionCache;
 		
 		if(mReflectionBackgroundColor != Color.TRANSPARENT){
-			final int top = bitmap.getHeight() + mReflectionGap;
-			final float frame = 2.0f;
+			final int top = bitmap.getHeight() + mReflectionGap - 2;
+			final float frame = 1.0f;
 			mReflectionPaint.setColor(mReflectionBackgroundColor);
 			canvas.drawRect(frame, top + frame , rfCache.getWidth()-frame, top + rfCache.getHeight() - frame, mReflectionPaint);
 		}
@@ -745,7 +745,7 @@ public class FeatureCoverFlow extends EndlessLoopAdapterContainer implements Vie
 		canvas.drawBitmap(bitmap, 0.0f, 0.0f, mPaint);
 		
 		//Draw reflection
-		canvas.drawBitmap(rfCache, 0.0f, bitmap.getHeight()-2 + mReflectionGap, mPaint);
+		canvas.drawBitmap(rfCache, 0.0f, bitmap.getHeight() - 2 + mReflectionGap, mPaint);
 		
 		
 		canvas.restore();		
