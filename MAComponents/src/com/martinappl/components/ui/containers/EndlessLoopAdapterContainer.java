@@ -4,11 +4,8 @@ package com.martinappl.components.ui.containers;
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 
-import com.martinappl.components.general.ToolBox;
-import com.martinappl.components.ui.containers.interfaces.IViewObserver;
-
-
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -23,6 +20,10 @@ import android.view.ViewDebug.CapturedViewProperty;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Scroller;
+
+import com.martinappl.components.R;
+import com.martinappl.components.general.ToolBox;
+import com.martinappl.components.ui.containers.interfaces.IViewObserver;
 
 /**
  * 
@@ -118,6 +119,15 @@ public class EndlessLoopAdapterContainer extends AdapterView<Adapter> {
         mTouchSlop = configuration.getScaledTouchSlop();
         mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
         mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
+        
+        //init params from xml
+		if(attrs != null){
+			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EndlessLoopAdapterContainer, defStyle, 0);
+			
+			shouldRepeat = a.getBoolean(R.styleable.EndlessLoopAdapterContainer_shouldRepeat, false);
+			
+			a.recycle();
+		}
 	}
 
 	public EndlessLoopAdapterContainer(Context context, AttributeSet attrs) {

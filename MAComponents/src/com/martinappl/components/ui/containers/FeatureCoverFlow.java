@@ -132,6 +132,11 @@ public class FeatureCoverFlow extends EndlessLoopAdapterContainer implements Vie
 	 */
 	private int mAlignTime = 350;
 	
+	/**
+	 * If you don't want reflections to be transparent, you can set them background of same color as widget background
+	 */
+	private int mReflectionBackgroundColor = Color.TRANSPARENT;
+	
 	/** A list of cached (re-usable) cover frames */
     protected final LinkedList<WeakReference<CoverFrame>> mRecycledCoverFrames = new LinkedList<WeakReference<CoverFrame>>();
 	
@@ -166,7 +171,6 @@ public class FeatureCoverFlow extends EndlessLoopAdapterContainer implements Vie
 	private int mScrollToPositionOnNextInvalidate = -1;
 	
 	
-	private int mReflectionBackgroundColor = Color.TRANSPARENT;
 	private boolean mInvalidated = false;
 	
 	

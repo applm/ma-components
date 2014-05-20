@@ -23,6 +23,10 @@
 		<attr name="reflectionBackroundColor" format="color" />	
     </declare-styleable>
     
+	<declare-styleable name="EndlessLoopAdapterContainer">
+        <attr name="shouldRepeat" format="boolean" />
+    </declare-styleable>
+    
 	<declare-styleable name="BasicContentBand">
         <attr name="gridMode">
              <flag name="fixed" value="0"/>
