@@ -1,7 +1,7 @@
-ma-components
+MComponents
 =============
 
-Android library with some Widgets and handy pieces of code I have developed 
+Android library with some Widgets and handy pieces of code I have developed.
 
 <p>Library contains: 
 <ul>
