@@ -80,7 +80,7 @@ public class EndlessLoopAdapterContainer extends AdapterView<Adapter> {
     protected boolean isSrollingDisabled = false;
     
     /** Whether content should be repeated when there is not enough items to fill container */
-    protected boolean shouldRepeat = false;
+    protected boolean shouldRepeat = true;
     
     /** Position to scroll adapter only if is in endless mode. This is done after layout if we find out we are endless, we must relayout*/
     protected int mScrollPositionIfEndless = -1;
