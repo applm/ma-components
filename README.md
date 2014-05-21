@@ -9,4 +9,4 @@ Android library with some Widgets and handy pieces of code I have developed
   <li>CoverFlow widget derived from endless horizontal list.</li>
   <li>ContentBand widget which allows for specify finer positioning of views inside scroll-able band</li>
 </ul>
-<img src="pics/coverImage.png" alt="CoverFlow widget"></p>
+<img src="http://applm.github.io/ma-components/pics/coverImage.png" alt="CoverFlow widget"></p>
