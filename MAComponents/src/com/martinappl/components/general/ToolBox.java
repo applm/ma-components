@@ -1,6 +1,5 @@
 package com.martinappl.components.general;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
@@ -23,10 +22,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PointF;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.telephony.TelephonyManager;
-import android.util.Base64;
 import android.util.FloatMath;
 import android.util.Log;
 import android.util.TypedValue;

@@ -6,8 +6,6 @@ package com.martinappl.components.ui.containers;
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 
-import com.martinappl.components.R;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -37,6 +35,8 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
+
+import com.martinappl.components.R;
 
 
 /**
