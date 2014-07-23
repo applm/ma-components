@@ -124,7 +124,7 @@ public class EndlessLoopAdapterContainer extends AdapterView<Adapter> {
 		if(attrs != null){
 			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EndlessLoopAdapterContainer, defStyle, 0);
 			
-			shouldRepeat = a.getBoolean(R.styleable.EndlessLoopAdapterContainer_shouldRepeat, false);
+			shouldRepeat = a.getBoolean(R.styleable.EndlessLoopAdapterContainer_shouldRepeat, true);
 			
 			a.recycle();
 		}
