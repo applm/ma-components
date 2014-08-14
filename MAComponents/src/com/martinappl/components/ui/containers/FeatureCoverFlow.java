@@ -37,6 +37,7 @@ import android.widget.FrameLayout;
 import android.widget.Scroller;
 
 import com.martinappl.components.R;
+import com.martinappl.components.general.Validate;
 
 
 /**
@@ -536,6 +537,7 @@ public class FeatureCoverFlow extends EndlessLoopAdapterContainer implements Vie
 			}
 			
 			child = mAdapter.getView(mLastItemPosition, getCachedView(), this);
+      Validate.notNull(child, "Your adapter has returned null from getView.");
 			child = addAndMeasureChildHorizontal(child, LAYOUT_MODE_AFTER);
 			left = layoutChildHorizontal(child, left, (LoopLayoutParams) child.getLayoutParams());
 			right = child.getRight();
@@ -596,14 +598,20 @@ public class FeatureCoverFlow extends EndlessLoopAdapterContainer implements Vie
 	
 	
 	private View getViewAtPosition(int position){
-		final View v = mCachedFrames.remove(position);
-		if(v == null) return mAdapter.getView(position, getCachedView(), this);
+		View v = mCachedFrames.remove(position);
+		if(v == null){
+      v = mAdapter.getView(position, getCachedView(), this);
+      Validate.notNull(v,"Your adapter has returned null from getView.");
+      return v;
+    }
 		
 		if(!containsView(v)){
 			return v;
 		}
 		else{
-			return mAdapter.getView(position, getCachedView(), this);
+      v = mAdapter.getView(position, getCachedView(), this);
+      Validate.notNull(v,"Your adapter has returned null from getView.");
+      return v;
 		}
 	}
 	

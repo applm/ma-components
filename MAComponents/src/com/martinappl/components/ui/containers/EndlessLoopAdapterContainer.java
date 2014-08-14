@@ -23,6 +23,7 @@ import android.widget.Scroller;
 
 import com.martinappl.components.R;
 import com.martinappl.components.general.ToolBox;
+import com.martinappl.components.general.Validate;
 import com.martinappl.components.ui.containers.interfaces.IViewObserver;
 
 /**
@@ -603,6 +604,7 @@ public class EndlessLoopAdapterContainer extends AdapterView<Adapter> {
 			}
 			
 			child = mAdapter.getView(mLastItemPosition, getCachedView(), this);
+      Validate.notNull(child,"Your adapter has returned null from getView.");
 			child = addAndMeasureChildHorizontal(child, LAYOUT_MODE_AFTER);
 			left = layoutChildHorizontal(child, left, (LoopLayoutParams) child.getLayoutParams());
 			right = child.getRight();
@@ -641,6 +643,7 @@ public class EndlessLoopAdapterContainer extends AdapterView<Adapter> {
 			if(mLastItemPosition >= mAdapter.getCount()) mLastItemPosition = 0;
 			
 			child = mAdapter.getView(mLastItemPosition, getCachedView(), this);
+      Validate.notNull(child,"Your adapter has returned null from getView.");
 			child = addAndMeasureChildHorizontal(child, LAYOUT_MODE_AFTER);
 			currLayoutLeft = layoutChildHorizontal(child, currLayoutLeft, (LoopLayoutParams) child.getLayoutParams());
 			right = child.getRight();
@@ -669,6 +672,7 @@ public class EndlessLoopAdapterContainer extends AdapterView<Adapter> {
 			if(mFirstItemPosition < 0) mFirstItemPosition = mAdapter.getCount()-1;
 			
 			child = mAdapter.getView(mFirstItemPosition, getCachedView(), this);
+      Validate.notNull(child,"Your adapter has returned null from getView.");
 			child = addAndMeasureChildHorizontal(child, LAYOUT_MODE_TO_BEFORE);
 			currLayoutRight = layoutChildHorizontalToBefore(child, currLayoutRight, (LoopLayoutParams) child.getLayoutParams());
 			childLeft = child.getLeft() - ((LoopLayoutParams)child.getLayoutParams()).leftMargin;
