@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:coverflow="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    tools:context="it.moondroid.carousellayoutdemo.CoverFlowActivity">
+
+
+    <it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow
+        android:id="@+id/coverflow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        coverflow:maxScaleFactor="1.5"
+        coverflow:scalingThreshold="0.5"
+        coverflow:rotationThreshold="0.5"
+        coverflow:spacing="0.6"
+        coverflow:reflectionGap="0px"
+        coverflow:coverWidth="@dimen/cover_width"
+        coverflow:coverHeight="@dimen/cover_height">
+        </it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow>
+
+</RelativeLayout>
