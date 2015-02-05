@@ -140,7 +140,18 @@ public class FeatureCoverFlow extends EndlessLoopAdapterContainer implements Vie
 	
 	/** A list of cached (re-usable) cover frames */
     protected final LinkedList<WeakReference<CoverFrame>> mRecycledCoverFrames = new LinkedList<WeakReference<CoverFrame>>();
-	
+
+    /** A listener for center item position */
+    private OnScrollPositionListener mOnScrollPositionListener;
+
+    private int mLastTouchState = -1;
+    private int mlastCenterItemPosition = -1;
+
+    public interface OnScrollPositionListener {
+        public void onScrolledToPosition(int position);
+        public void onScrolling();
+    }
+
 	private int mPaddingTop = 0;
 	private int mPaddingBottom = 0;
 	
@@ -454,7 +465,27 @@ public class FeatureCoverFlow extends EndlessLoopAdapterContainer implements Vie
 				return;
 			}
 		}
-		
+
+        if(mTouchState == TOUCH_STATE_RESTING){
+
+            final int lastCenterItemPosition = (mFirstItemPosition + mLastCenterItemIndex) % mAdapter.getCount();
+            if (mLastTouchState != TOUCH_STATE_RESTING || mlastCenterItemPosition != lastCenterItemPosition){
+                mLastTouchState = TOUCH_STATE_RESTING;
+                mlastCenterItemPosition = lastCenterItemPosition;
+                if(mOnScrollPositionListener != null) mOnScrollPositionListener.onScrolledToPosition(lastCenterItemPosition);
+            }
+        }
+
+        if (mTouchState == TOUCH_STATE_SCROLLING && mLastTouchState != TOUCH_STATE_SCROLLING){
+            mLastTouchState = TOUCH_STATE_SCROLLING;
+            if(mOnScrollPositionListener != null) mOnScrollPositionListener.onScrolling();
+        }
+        if (mTouchState == TOUCH_STATE_FLING && mLastTouchState != TOUCH_STATE_FLING){
+            mLastTouchState = TOUCH_STATE_FLING;
+            if(mOnScrollPositionListener != null) mOnScrollPositionListener.onScrolling();
+        }
+
+
 		//make sure we never stay unaligned after last draw in resting state
 		if(mTouchState == TOUCH_STATE_RESTING && mCenterItemOffset != 0){
 			scrollBy(mCenterItemOffset, 0);
@@ -1388,7 +1419,15 @@ public class FeatureCoverFlow extends EndlessLoopAdapterContainer implements Vie
 		
 		invalidate();
 	}
-	
+
+    /**
+     * sets listener for center item position
+     * @param onScrollPositionListener
+     */
+    public void setOnScrollPositionListener(OnScrollPositionListener onScrollPositionListener){
+        mOnScrollPositionListener = onScrollPositionListener;
+    }
+
 	/**
 	 * removes children, must be after caching children
 	 * @param cf

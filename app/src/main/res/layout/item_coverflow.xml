@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/cover_width"
-    android:layout_height="@dimen/cover_height">
+    android:layout_height="@dimen/cover_height"
+    android:foreground="@drawable/cover_selector"
+    android:clickable="true">
 
     <ImageView
         android:id="@+id/image"
@@ -11,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:scaleType="centerCrop"
-        tools:src="@drawable/image_1" />
+        tools:src="@drawable/image_1"/>
 
     <TextView
         android:id="@+id/label"
@@ -20,10 +22,10 @@
         android:textAppearance="?android:attr/textAppearanceSmallInverse"
         android:padding="8dp"
         tools:text="Title"
-
         android:background="@drawable/label_background"
         android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
 
-</RelativeLayout>
+</FrameLayout>
