@@ -1014,7 +1014,7 @@ public class EndlessLoopAdapterContainer extends AdapterView<Adapter> {
 						
 				mSelectedPosition = position;				
 				v.setSelected(true);
-				
+
 				if(mOnItemClickListener != null) mOnItemClickListener.onItemClick(this, v, position , getItemIdAtPosition(position));
 				if(mOnItemSelectedListener != null) mOnItemSelectedListener.onItemSelected(this, v, position, getItemIdAtPosition(position));
 				
@@ -1044,6 +1044,7 @@ public class EndlessLoopAdapterContainer extends AdapterView<Adapter> {
         
         switch (action) {
         case MotionEvent.ACTION_DOWN:
+            super.onTouchEvent(event);
             /*
              * If being flinged and user touches, stop the fling. isFinished
              * will be false if being flinged.
