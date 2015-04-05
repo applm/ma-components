@@ -1,3 +1,7 @@
+<font color="red">Carousel from this library is deprecated.</font>
+Use one from link below. I will try to move there all features.
+https://github.com/applm/CarouselWidget
+
 MComponents
 =============
 
